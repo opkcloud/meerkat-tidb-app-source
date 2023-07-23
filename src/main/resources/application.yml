@@ -1,0 +1,36 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: meerkat-tidb-app
+  datasource:
+    name: main-pool
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gateway01.us-east-1.prod.aws.tidbcloud.com:4000/test?user=3H6S3ZtMnKfHHKb.root&password=g6fGzGpz7NQJRheM&sslMode=VERIFY_IDENTITY&enabledTLSProtocols=TLSv1.2,TLSv1.3&rewriteBatchedStatements=true
+    username: 3H6S3ZtMnKfHHKb.root
+    password: g6fGzGpz7NQJRheM
+#    HikariPool 较佳配置
+    hikari:
+      connection-timeout: 60000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 10
+      read-only: false
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.jdbc.batch_size: 1000
+      hibernate.jdbc.batch_versioned_data: true
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.generate_statistics: false
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
