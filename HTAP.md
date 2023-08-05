@@ -16,8 +16,8 @@ WHERE stock_name = 'GOOG' and trade_date between '2015-01-01' and '2015-01-31'
   GROUP BY trade_date ORDER by trade_date;
 ```
 ### 以下是这个语句执行的耗时统计
-不开启MPP：使用是传统SQL数据库服务器
-开启MPP：是TiDB能实现OLTP与OLAP的融合
+* 不开启MPP：使用是传统SQL数据库服务器
+* 开启MPP：是TiDB能实现OLTP与OLAP的融合
 
 | 数据量 | 不开启MPP | 开启MPP |
 | ------ | --------- | ------- |
