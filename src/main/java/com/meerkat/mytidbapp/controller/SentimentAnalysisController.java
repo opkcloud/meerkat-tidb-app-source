@@ -250,4 +250,13 @@ public class SentimentAnalysisController {
         return Result.ok(stockAndProbabilityResList);
     }
 
+    /**
+     *  查询股票评论数量
+     */
+    @GetMapping("/getStockCommentTotalCount")
+    public Result<Integer> getStockCommentTotalCount() {
+        Integer stockCommentTotalCount = sentimentAnalysisResultRepo.getStockCommentTotalCount();
+        return Result.ok(stockCommentTotalCount);
+    }
+
 }

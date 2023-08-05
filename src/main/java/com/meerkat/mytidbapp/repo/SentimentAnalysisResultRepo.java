@@ -43,4 +43,7 @@ public interface SentimentAnalysisResultRepo extends JpaRepository<SentimentAnal
             " WHERE stockName = ?1 and tradeDate between ?2 and ?3 GROUP BY tradeDate ORDER by tradeDate")
     List<StockAndProbabilityRes> getTradeDateAvgProbability(String stockName, LocalDate startTime, LocalDate endTime);
 
+    @Query(" SELECT count(words) FROM SentimentAnalysisResult ")
+    Integer getStockCommentTotalCount();
+
 }
