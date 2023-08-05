@@ -1,4 +1,4 @@
-TiDB拥有强大的HTAP能力，
+TiDB拥有强大的HTAP能力，TiKV、TiFlash 可按需部署在不同的机器，解决 HTAP 资源隔离的问题。
 ## 可以通过以下命令开启MPP：
 ```
 ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
