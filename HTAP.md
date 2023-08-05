@@ -14,4 +14,5 @@ SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and
 
 ### 开启TiFlash后进行统计数据查询的结果如下：
 
-## 结论：TiFlash使得TiDB的数据分析性能大幅提升。
+## 总结
+TiDB能解决传统关系型数据库的一大难题：数据分析性能弱，导致了OLTP和OLAP两类的应用需要两套数据架构，而TiDB则将两者进行了整合，无需搭建两套数据体系，大幅节省了应用数据成本，TiDB serverless直接在线提供服务，让开发者可以开箱即用，省心省时省力。
