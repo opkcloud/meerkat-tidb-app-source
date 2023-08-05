@@ -9,12 +9,21 @@ SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and
 ```
 
 ## 以下是本次的实验结果
+使用是语句如下：
+```
+SELECT trade_date, AVG(probability) avgProbability FROM test.sentiment_analysis_result_temp  
+WHERE stock_name = 'GOOG' and trade_date between '2015-01-01' and '2015-01-31'
+  GROUP BY trade_date ORDER by trade_date;
+```
 
-### 未开启TiFlash进行一个统计数据查询的结果如下：
-todo
+| 数据量 | 不开启MPP | 开启MPP |
+| ------ | --------- | ------- |
+| 10w    | 60ms      | 20ms    |
+| 10w    | 57ms      | 17ms    |
+| 10w    | 59ms      | 18ms    |
+| 10w    | 61ms      | 19ms    |
 
-### 开启TiFlash后进行统计数据查询的结果如下：
-todo
+可以看出，开启MPP比不开启MPP（传统关系型数据库模式）快三倍。
 
 ## 总结
 TiDB能解决传统关系型数据库的一大难题：数据分析性能弱，导致了OLTP和OLAP两类的应用需要两套数据架构，而TiDB则将两者进行了整合，无需搭建两套数据体系，大幅节省了应用数据成本，TiDB serverless直接在线提供服务，让开发者可以开箱即用，省心省时省力。
