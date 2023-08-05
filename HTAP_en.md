@@ -28,5 +28,5 @@ WHERE stock_name = 'GOOG' and the transaction date is between '2015-01-01' and '
 
 It can be seen that enabling MPP is three times faster than not enabling MPP (traditional relational database mode).
 
-## Summarize
+## Summary
 TiDB can solve a major problem of traditional relational databases: weak data analysis performance, resulting in the need for two sets of data architectures for OLTP and OLAP applications. TiDB integrates the two and builds two sets of data systems, which greatly solves the problem. In order to save application costs, TiDB serverless provides services directly online, allowing developers to use it out of the box, saving worry, time and effort.
