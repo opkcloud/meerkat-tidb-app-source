@@ -7,6 +7,7 @@ ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
 ```
 SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and TABLE_NAME = 'table_name';
 ```
+如果结果中出现 ExchangeSender 和 ExchangeReceiver 算子，表明 MPP 已生效。
 
 ## 以下是本次的实验结果
 ### 使用的SQL语句如下：
