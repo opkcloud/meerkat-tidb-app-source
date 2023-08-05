@@ -9,7 +9,7 @@ SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and
 ```
 
 ## 以下是本次的实验结果
-使用是语句如下：
+使用的SQL语句如下：
 ```
 SELECT trade_date, AVG(probability) avgProbability FROM test.sentiment_analysis_result_temp  
 WHERE stock_name = 'GOOG' and trade_date between '2015-01-01' and '2015-01-31'
