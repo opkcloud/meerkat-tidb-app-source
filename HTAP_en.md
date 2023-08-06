@@ -1,0 +1,32 @@
+TiDB has powerful HTAP capabilities. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
+## 1.Enable MPP(masively parallel processiong) with the following command:
+````
+ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
+````
+## 2.Query whether TiDB has been opened and completed
+````
+SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and TABLE_NAME = 'table_name';
+````
+If ExchangeSender and ExchangeReceiver operators appear in the result, MPP has taken effect.
+![image](https://github.com/yuan2006/meerkat-tidb-app-source/assets/37364170/90bfb0b1-0bd4-46ce-af8b-f943a84e1304)
+
+
+## 3.The following are the results of this experiment
+###The SQL statement used is as follows:
+````
+SELECT trade_date, AVG(probability) avgProbability FROM test.sentiment_analysis_result_temp
+WHERE stock_name = 'GOOG' and the transaction date is between '2015-01-01' and '2015-01-31'
+  Group by transaction date Sort by transaction date;
+````
+### 4.The following is the running statistics of the execution of the statement
+* Do not enable MPP: refers to the use of traditional SQL database server
+* Enable MPP: TiDB can realize the integration of OLTP and OLAP, and can enhance data analysis capabilities
+
+|Data volume |Disable MPP |Enable MPP |
+| ------ | --------- | -------- |
+| 100,000 | 60 ms | 20 ms |
+| 100,000 | 57 ms | 17 ms |
+| 100,000 | 59 ms | 18 ms |
+| 100,000 | 61 ms | 19 ms |
+
+Enabling MPP is three times faster than not enabling MPP (traditional relational database mode). 
