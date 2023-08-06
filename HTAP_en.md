@@ -1,5 +1,5 @@
 TiDB has powerful HTAP capabilities. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
-## Enable MPP with the following command:
+## Enable MPP(masively parallel processiong) with the following command:
 ````
 ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
 ````
