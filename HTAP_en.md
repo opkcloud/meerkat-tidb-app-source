@@ -8,6 +8,8 @@ ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
 SELECT * FROM information_schema.tiflash_replica WHERE TABLE_SCHEMA = 'test' and TABLE_NAME = 'table_name';
 ````
 If ExchangeSender and ExchangeReceiver operators appear in the result, MPP has taken effect.
+![image](https://github.com/yuan2006/meerkat-tidb-app-source/assets/37364170/90bfb0b1-0bd4-46ce-af8b-f943a84e1304)
+
 
 ## The following are the results of this experiment
 ###The SQL statement used is as follows:
