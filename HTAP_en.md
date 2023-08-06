@@ -20,7 +20,7 @@ WHERE stock_name = 'GOOG' and the transaction date is between '2015-01-01' and '
 ````
 ### 4.The following is the running statistics of the execution of the statement
 * Do not enable MPP: refers to the use of traditional SQL database server
-* Enable MPP: TiDB can realize the integration of OLTP and OLAP, and can enhance data analysis capabilities
+* Enable MPP: TiDB can realize the integration of OLTP and OLAP, it is HTAP.
 
 | table data record total count | statement type | TiKV  | TiFlash(MPP) |
 | ----------------------------- | -------------- | ----- | ------------ |
