@@ -1,4 +1,4 @@
-TiDB has powerful HTAP capabilities. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
+TiDB is good at HTAP. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
 ## 1.Enable MPP(masively parallel processiong) with the following command:
 ````
 ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
@@ -22,7 +22,7 @@ WHERE stock_name = 'GOOG' and the transaction date is between '2015-01-01' and '
 * Do not enable MPP: refers to the use of traditional SQL database server
 * Enable MPP: TiDB can realize the integration of OLTP and OLAP, it is HTAP.
 
-| table data record total count | statement type | TiKV  | TiFlash(MPP) |
+| table data record total count | statement type | task type(cop)  | task type(MPP[TiFlash]) |
 | ----------------------------- | -------------- | ----- | ------------ |
 | 10w                           | avg + group by | 60ms  | 20ms         |
 | 10w                           | avg + group by | 57ms  | 17ms         |
