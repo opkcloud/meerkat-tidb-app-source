@@ -1,4 +1,4 @@
-TiDB has powerful HTAP capabilities. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
+TiDB is good at HTAP. TiKV and TiFlash can be configured on different machines to solve the problem of HTAP resource isolation.
 ## 1.Enable MPP(masively parallel processiong) with the following command:
 ````
 ALTER TABLE test.table_name SET TIFLASH REPLICA 1;
@@ -20,13 +20,21 @@ WHERE stock_name = 'GOOG' and the transaction date is between '2015-01-01' and '
 ````
 ### 4.The following is the running statistics of the execution of the statement
 * Do not enable MPP: refers to the use of traditional SQL database server
-* Enable MPP: TiDB can realize the integration of OLTP and OLAP, and can enhance data analysis capabilities
+* Enable MPP: TiDB can realize the integration of OLTP and OLAP, it is HTAP.
 
-|Data volume |Disable MPP |Enable MPP |
-| ------ | --------- | -------- |
-| 100,000 | 60 ms | 20 ms |
-| 100,000 | 57 ms | 17 ms |
-| 100,000 | 59 ms | 18 ms |
-| 100,000 | 61 ms | 19 ms |
+| table data record total count | statement type | task type(cop)  | task type(MPP[TiFlash]) |
+| ----------------------------- | -------------- | ----- | ------------ |
+| 10w                           | avg + group by | 60ms  | 20ms         |
+| 10w                           | avg + group by | 57ms  | 17ms         |
+| 10w                           | avg + group by | 59ms  | 18ms         |
+| 10w                           | avg + group by | 61ms  | 19ms         |
+| 170w                          | avg + group by | 426ms | 20ms         |
+| 170w                          | avg + group by | 452ms | 19ms         |
+| 170w                          | avg + group by | 414ms | 19ms         |
+| 170w                          | avg + group by | 457ms | 20ms         |
+| 170w                          | count          | 366ms | 34ms         |
+| 170w                          | count          | 288ms | 27ms         |
+| 170w                          | count          | 270ms | 27ms         |
+| 170w                          | count          | 271ms | 27ms         |
 
-Enabling MPP is three times faster than not enabling MPP (traditional relational database mode). 
+Enabling MPP is three to tweenty times faster than not enabling MPP (traditional relational database mode). 

@@ -20,14 +20,22 @@ WHERE stock_name = 'GOOG' and trade_date between '2015-01-01' and '2015-01-31'
 * 不开启MPP：是指使用是传统SQL数据库服务器
 * 开启MPP：是TiDB能实现OLTP与OLAP的融合，能增强数据分析能力
 
-| 数据量 | 不开启MPP | 开启MPP |
-| ------ | --------- | ------- |
-| 10w    | 60ms      | 20ms    |
-| 10w    | 57ms      | 17ms    |
-| 10w    | 59ms      | 18ms    |
-| 10w    | 61ms      | 19ms    |
+| table data record total count | statement type | task type(cop)  | task type(MPP[TiFlash]) |
+| ----------------------------- | -------------- | ----- | ------------ |
+| 10w                           | avg + group by | 60ms  | 20ms         |
+| 10w                           | avg + group by | 57ms  | 17ms         |
+| 10w                           | avg + group by | 59ms  | 18ms         |
+| 10w                           | avg + group by | 61ms  | 19ms         |
+| 170w                          | avg + group by | 426ms | 20ms         |
+| 170w                          | avg + group by | 452ms | 19ms         |
+| 170w                          | avg + group by | 414ms | 19ms         |
+| 170w                          | avg + group by | 457ms | 20ms         |
+| 170w                          | count          | 366ms | 34ms         |
+| 170w                          | count          | 288ms | 27ms         |
+| 170w                          | count          | 270ms | 27ms         |
+| 170w                          | count          | 271ms | 27ms         |
 
-可以看出，开启MPP比不开启MPP（传统关系型数据库模式）快三倍。
+可以看出，开启MPP比不开启MPP（传统关系型数据库模式）快3到20倍。
 
 ## 总结
 TiDB能解决传统关系型数据库的一大难题：数据分析性能弱，导致了OLTP和OLAP两类的应用需要两套数据架构，而TiDB则将两者进行了整合，无需搭建两套数据体系，大幅节省了应用数据成本，TiDB serverless直接在线提供服务，让开发者可以开箱即用，省心省时省力。
